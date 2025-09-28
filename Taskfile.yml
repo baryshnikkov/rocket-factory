@@ -3,15 +3,16 @@ version: '3'
 # Глобальные переменные проекта
 vars:
   GO_VERSION: '1.24'
-  GOLANGCI_LINT_VERSION: 'v2.1.5'
-  GCI_VERSION: 'v0.13.6'
-  GOFUMPT_VERSION: 'v0.8.0'
+  GOLANGCI_LINT_VERSION: 'v2.1.5' # линтер для Go
+  GCI_VERSION: 'v0.13.6' # инструмент для форматирования и сортировки импортов в Go
+  GOFUMPT_VERSION: 'v0.8.0' # форматтер кода для Go.
 
   BIN_DIR: '{{.ROOT_DIR}}/bin'
   GOLANGCI_LINT: '{{.BIN_DIR}}/golangci-lint'
   GCI: '{{.BIN_DIR}}/gci'
   GOFUMPT: '{{.BIN_DIR}}/gofumpt'
-  MODULES: assembly inventory order payment platform iam notification
+
+  MODULES: inventory order payment
 
 tasks:
   install-formatters:
@@ -67,6 +68,8 @@ tasks:
           fi
         done
 
+
+
   install-golangci-lint:
     desc: "Устанавливает golangci-lint в каталог bin"
     summary: |
@@ -110,3 +113,18 @@ tasks:
           fi
         done
         exit $ERR
+
+
+  deps:update:
+    desc: "Обновление зависимостей в go.mod во всех модулях"
+    cmds:
+      - |
+        echo "🔄 Обновление зависимостей в go.work"
+        go work sync
+        echo "🔄 Обновление зависимостей в go.mod во всех модулях"
+        for mod in {{.MODULES}}; do
+          if [ -d "$mod" ]; then
+            echo "🔄 Обновление зависимостей в $mod"
+            (cd "$mod" && go mod tidy -compat=1.24) || exit 1
+          fi
+        done
