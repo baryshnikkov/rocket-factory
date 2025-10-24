@@ -3,3 +3,19 @@ module github.com/baryshnikkov/rocket-factory/inventory
 go 1.24.2
 
 replace github.com/baryshnikkov/rocket-factory/shared => ../shared
+
+require (
+	github.com/baryshnikkov/rocket-factory/shared v0.0.0-00010101000000-000000000000
+	github.com/brianvoe/gofakeit/v7 v7.8.0
+	github.com/google/uuid v1.6.0
+	google.golang.org/grpc v1.76.0
+	google.golang.org/protobuf v1.36.6
+)
+
+require (
+	github.com/envoyproxy/protoc-gen-validate v1.2.1 // indirect
+	golang.org/x/net v0.42.0 // indirect
+	golang.org/x/sys v0.34.0 // indirect
+	golang.org/x/text v0.27.0 // indirect
+	google.golang.org/genproto/googleapis/rpc v0.0.0-20250804133106-a7a43d27e69b // indirect
+)
