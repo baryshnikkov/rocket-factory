@@ -1,0 +1,2 @@
+// Code generated for baryshnikkov service
+// © baryshnikkov 2025.
