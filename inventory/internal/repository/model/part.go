@@ -21,7 +21,7 @@ type Category string
 
 const (
 	CategoryUnspecified Category = "UNKNOWN"  // Неизвестная категория
-	CategoryEngineering Category = "ENGINE"   // Двигатель
+	CategoryEngine      Category = "ENGINE"   // Двигатель
 	CategoryFuel        Category = "FUEL"     //  Топливо
 	CategoryPorthole    Category = "PORTHOLE" // Иллюминатор
 	CategoryWing        Category = "WING"     // Крыло

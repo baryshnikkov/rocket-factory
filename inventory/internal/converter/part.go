@@ -29,6 +29,55 @@ func PartToProto(part model.Part) *inventoryV1.Part {
 	}
 }
 
+func PartsFilterToModel(filter *inventoryV1.PartsFilter) model.PartsFilter {
+	if filter == nil {
+		return model.PartsFilter{}
+	}
+
+	partsUUIDs := make([]string, 0, len(filter.Uuids))
+	if len(filter.Uuids) > 0 {
+		partsUUIDs = filter.Uuids
+	}
+
+	partsNames := make([]string, 0, len(filter.Names))
+	if len(filter.Names) > 0 {
+		partsNames = filter.Names
+	}
+
+	partsTags := make([]string, 0, len(filter.Tags))
+	if len(filter.Tags) > 0 {
+		partsTags = filter.Tags
+	}
+
+	partsManufacturerCountries := make([]string, 0, len(filter.ManufacturerCountries))
+	if len(filter.ManufacturerCountries) > 0 {
+		partsManufacturerCountries = filter.ManufacturerCountries
+	}
+
+	partsCategories := make([]model.Category, 0, len(filter.Categories))
+	if len(filter.Categories) > 0 {
+		for _, c := range filter.Categories {
+			partsCategories = append(partsCategories, model.Category(c.String()))
+		}
+	}
+
+	return model.PartsFilter{
+		UUIDs:                 partsUUIDs,
+		Names:                 partsNames,
+		Categories:            partsCategories,
+		ManufacturerCountries: partsManufacturerCountries,
+		Tags:                  partsTags,
+	}
+}
+
+func PartsToProto(parts []model.Part) []*inventoryV1.Part {
+	result := make([]*inventoryV1.Part, 0, len(parts))
+	for _, part := range parts {
+		result = append(result, PartToProto(part))
+	}
+	return result
+}
+
 func categoryToProto(category model.Category) inventoryV1.Category {
 	switch category {
 	case model.CategoryEngine:
@@ -84,49 +133,4 @@ func metadataToProto(meta model.Metadata) map[string]*inventoryV1.Value {
 		val = &inventoryV1.Value{}
 	}
 	return map[string]*inventoryV1.Value{"value": val}
-}
-
-func PartsFilterToModel(filter *inventoryV1.PartsFilter) model.PartsFilter {
-	partsUUIDs := make([]string, 0, len(filter.Uuids))
-	if len(filter.Uuids) > 0 {
-		partsUUIDs = filter.Uuids
-	}
-
-	partsNames := make([]string, 0, len(filter.Names))
-	if len(filter.Names) > 0 {
-		partsUUIDs = filter.Names
-	}
-
-	partsTags := make([]string, 0, len(filter.Tags))
-	if len(filter.Tags) > 0 {
-		partsUUIDs = filter.Tags
-	}
-
-	partsManufacturerCountries := make([]string, 0, len(filter.ManufacturerCountries))
-	if len(filter.ManufacturerCountries) > 0 {
-		partsUUIDs = filter.ManufacturerCountries
-	}
-
-	partsCategories := make([]model.Category, 0, len(filter.Categories))
-	if len(filter.Categories) > 0 {
-		for _, c := range filter.Categories {
-			partsCategories = append(partsCategories, model.Category(c.String()))
-		}
-	}
-
-	return model.PartsFilter{
-		UUIDs:                 partsUUIDs,
-		Names:                 partsNames,
-		Categories:            partsCategories,
-		ManufacturerCountries: partsManufacturerCountries,
-		Tags:                  partsTags,
-	}
-}
-
-func PartsToProto(parts []model.Part) []*inventoryV1.Part {
-	result := make([]*inventoryV1.Part, 0, len(parts))
-	for _, part := range parts {
-		result = append(result, PartToProto(part))
-	}
-	return result
 }
