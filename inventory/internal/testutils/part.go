@@ -1,12 +1,14 @@
 package testutils
 
 import (
-	"github.com/baryshnikkov/rocket-factory/inventory/internal/model"
-	repoModel "github.com/baryshnikkov/rocket-factory/inventory/internal/repository/model"
 	"github.com/brianvoe/gofakeit/v7"
 	"github.com/samber/lo"
+
+	"github.com/baryshnikkov/rocket-factory/inventory/internal/model"
+	repoModel "github.com/baryshnikkov/rocket-factory/inventory/internal/repository/model"
 )
 
+//nolint:dupl
 func CreatePart() model.Part {
 	return model.Part{
 		UUID:          gofakeit.UUID(),
@@ -35,6 +37,7 @@ func CreatePart() model.Part {
 	}
 }
 
+//nolint:dupl
 func CreateRepoPart() repoModel.Part {
 	return repoModel.Part{
 		UUID:          gofakeit.UUID(),

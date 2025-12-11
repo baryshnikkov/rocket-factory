@@ -1,10 +1,12 @@
 package order
 
 import (
+	"time"
+
+	"github.com/brianvoe/gofakeit/v7"
+
 	"github.com/baryshnikkov/rocket-factory/order/internal/model"
 	repoModel "github.com/baryshnikkov/rocket-factory/order/internal/repository/model"
-	"github.com/brianvoe/gofakeit/v7"
-	"time"
 )
 
 func (s *RepositorySuite) TestGetOrderSuccess() {

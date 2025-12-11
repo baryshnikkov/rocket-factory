@@ -2,11 +2,13 @@ package v1
 
 import (
 	"errors"
+	"net/http"
+
+	"github.com/google/uuid"
+
 	"github.com/baryshnikkov/rocket-factory/order/internal/converter"
 	"github.com/baryshnikkov/rocket-factory/order/internal/model"
 	orderV1 "github.com/baryshnikkov/rocket-factory/shared/pkg/openapi/order/v1"
-	"github.com/google/uuid"
-	"net/http"
 )
 
 func (s *APISuite) TestPayOrderSuccess() {

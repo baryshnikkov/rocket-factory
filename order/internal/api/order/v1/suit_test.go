@@ -2,9 +2,11 @@ package v1
 
 import (
 	"context"
-	"github.com/baryshnikkov/rocket-factory/order/internal/service/mocks"
-	"github.com/stretchr/testify/suite"
 	"testing"
+
+	"github.com/stretchr/testify/suite"
+
+	"github.com/baryshnikkov/rocket-factory/order/internal/service/mocks"
 )
 
 type APISuite struct {

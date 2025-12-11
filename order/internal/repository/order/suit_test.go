@@ -2,10 +2,12 @@ package order
 
 import (
 	"context"
-	repoModel "github.com/baryshnikkov/rocket-factory/order/internal/repository/model"
-	"github.com/stretchr/testify/suite"
 	"sync"
 	"testing"
+
+	"github.com/stretchr/testify/suite"
+
+	repoModel "github.com/baryshnikkov/rocket-factory/order/internal/repository/model"
 )
 
 type RepositorySuite struct {

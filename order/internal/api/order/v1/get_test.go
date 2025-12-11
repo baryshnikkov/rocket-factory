@@ -3,13 +3,15 @@ package v1
 import (
 	"context"
 	"errors"
-	"github.com/baryshnikkov/rocket-factory/order/internal/converter"
-	"github.com/baryshnikkov/rocket-factory/order/internal/model"
-	orderV1 "github.com/baryshnikkov/rocket-factory/shared/pkg/openapi/order/v1"
+	"time"
+
 	"github.com/google/uuid"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
-	"time"
+
+	"github.com/baryshnikkov/rocket-factory/order/internal/converter"
+	"github.com/baryshnikkov/rocket-factory/order/internal/model"
+	orderV1 "github.com/baryshnikkov/rocket-factory/shared/pkg/openapi/order/v1"
 )
 
 func (s *APISuite) TestGetOrderSuccess() {

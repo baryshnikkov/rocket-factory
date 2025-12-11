@@ -2,11 +2,12 @@ package order
 
 import (
 	"context"
-	grpcMock "github.com/baryshnikkov/rocket-factory/order/internal/client/grpc/mocks"
-	"github.com/baryshnikkov/rocket-factory/order/internal/repository/mocks"
 	"testing"
 
 	"github.com/stretchr/testify/suite"
+
+	grpcMock "github.com/baryshnikkov/rocket-factory/order/internal/client/grpc/mocks"
+	"github.com/baryshnikkov/rocket-factory/order/internal/repository/mocks"
 )
 
 type ServiceSuite struct {

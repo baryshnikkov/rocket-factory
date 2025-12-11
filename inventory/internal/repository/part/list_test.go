@@ -1,10 +1,11 @@
 package part
 
 import (
+	"github.com/brianvoe/gofakeit/v7"
+
 	"github.com/baryshnikkov/rocket-factory/inventory/internal/model"
 	repoModel "github.com/baryshnikkov/rocket-factory/inventory/internal/repository/model"
 	"github.com/baryshnikkov/rocket-factory/inventory/internal/testutils"
-	"github.com/brianvoe/gofakeit/v7"
 )
 
 func (s *RepositorySuite) TestListPartsSuccess() {

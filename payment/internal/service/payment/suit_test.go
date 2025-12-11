@@ -1,19 +1,15 @@
-package part
+package payment
 
 import (
 	"context"
 	"testing"
 
 	"github.com/stretchr/testify/suite"
-
-	"github.com/baryshnikkov/rocket-factory/inventory/internal/repository/mocks"
 )
 
 type ServiceSuite struct {
 	suite.Suite
 	ctx context.Context
-
-	inventoryRepository *mocks.InventoryRepository
 
 	service *service
 }
@@ -21,11 +17,7 @@ type ServiceSuite struct {
 func (s *ServiceSuite) SetupTest() {
 	s.ctx = context.Background()
 
-	s.inventoryRepository = mocks.NewInventoryRepository(s.T())
-
-	s.service = NewService(
-		s.inventoryRepository,
-	)
+	s.service = NewService()
 }
 
 func (s *ServiceSuite) TearDownTest() {

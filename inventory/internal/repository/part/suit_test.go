@@ -5,8 +5,9 @@ import (
 	"sync"
 	"testing"
 
-	repoModel "github.com/baryshnikkov/rocket-factory/inventory/internal/repository/model"
 	"github.com/stretchr/testify/suite"
+
+	repoModel "github.com/baryshnikkov/rocket-factory/inventory/internal/repository/model"
 )
 
 type RepositorySuite struct {

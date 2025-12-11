@@ -1,8 +1,9 @@
 package order
 
 import (
-	"github.com/baryshnikkov/rocket-factory/order/internal/model"
 	"github.com/brianvoe/gofakeit/v7"
+
+	"github.com/baryshnikkov/rocket-factory/order/internal/model"
 )
 
 func (s *ServiceSuite) TestCreateOrderSuccess() {

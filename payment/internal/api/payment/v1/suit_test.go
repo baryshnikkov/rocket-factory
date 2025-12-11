@@ -6,21 +6,21 @@ import (
 
 	"github.com/stretchr/testify/suite"
 
-	"github.com/baryshnikkov/rocket-factory/inventory/internal/service/mocks"
+	"github.com/baryshnikkov/rocket-factory/payment/internal/service/mocks"
 )
 
 type APISuite struct {
 	suite.Suite
 	ctx context.Context
 
-	inventoryService *mocks.InventoryService
-	api              *api
+	paymentService *mocks.PaymentService
+	api            *api
 }
 
 func (s *APISuite) SetupTest() {
 	s.ctx = context.Background()
-	s.inventoryService = mocks.NewInventoryService(s.T())
-	s.api = NewAPI(s.inventoryService)
+	s.paymentService = mocks.NewPaymentService(s.T())
+	s.api = NewAPI(s.paymentService)
 }
 
 func (s *APISuite) TearDownSuite() {}

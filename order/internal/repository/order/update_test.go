@@ -1,11 +1,13 @@
 package order
 
 import (
-	"github.com/baryshnikkov/rocket-factory/order/internal/model"
-	repoModel "github.com/baryshnikkov/rocket-factory/order/internal/repository/model"
+	"time"
+
 	"github.com/brianvoe/gofakeit/v7"
 	"github.com/samber/lo"
-	"time"
+
+	"github.com/baryshnikkov/rocket-factory/order/internal/model"
+	repoModel "github.com/baryshnikkov/rocket-factory/order/internal/repository/model"
 )
 
 func (s *RepositorySuite) TestUpdateOrderSuccess() {

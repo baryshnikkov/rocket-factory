@@ -2,10 +2,9 @@ module github.com/baryshnikkov/rocket-factory/payment
 
 go 1.24.2
 
-replace github.com/baryshnikkov/rocket-factory/shared => ../shared
-
 require (
 	github.com/baryshnikkov/rocket-factory/shared v0.0.0-00010101000000-000000000000
+	github.com/brianvoe/gofakeit/v7 v7.8.0
 	github.com/google/uuid v1.6.0
 	github.com/stretchr/testify v1.11.1
 	google.golang.org/grpc v1.76.0

@@ -1,14 +1,15 @@
 package v1
 
 import (
-	"github.com/baryshnikkov/rocket-factory/inventory/internal/converter"
-	"github.com/baryshnikkov/rocket-factory/inventory/internal/model"
-	"github.com/baryshnikkov/rocket-factory/inventory/internal/testutils"
-	inventoryV1 "github.com/baryshnikkov/rocket-factory/shared/pkg/proto/inventory/v1"
 	"github.com/brianvoe/gofakeit/v7"
 	"github.com/stretchr/testify/mock"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
+
+	"github.com/baryshnikkov/rocket-factory/inventory/internal/converter"
+	"github.com/baryshnikkov/rocket-factory/inventory/internal/model"
+	"github.com/baryshnikkov/rocket-factory/inventory/internal/testutils"
+	inventoryV1 "github.com/baryshnikkov/rocket-factory/shared/pkg/proto/inventory/v1"
 )
 
 func (s *APISuite) TestListPartsSuccess() {
@@ -65,13 +66,11 @@ func (s *APISuite) TestListPartsEmptyFilter() {
 }
 
 func (s *APISuite) TestListPartsNotFound() {
-	var (
-		req = &inventoryV1.ListPartsRequest{
-			Filter: &inventoryV1.PartsFilter{
-				Uuids: []string{gofakeit.UUID()},
-			},
-		}
-	)
+	req := &inventoryV1.ListPartsRequest{
+		Filter: &inventoryV1.PartsFilter{
+			Uuids: []string{gofakeit.UUID()},
+		},
+	}
 
 	s.inventoryService.On("ListParts", s.ctx, mock.AnythingOfType("model.PartsFilter")).
 		Return([]model.Part{}, model.ErrPartsNotFound)

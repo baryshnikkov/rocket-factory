@@ -2,20 +2,22 @@ package v1
 
 import (
 	"errors"
+
+	"github.com/google/uuid"
+
 	"github.com/baryshnikkov/rocket-factory/order/internal/model"
 	orderV1 "github.com/baryshnikkov/rocket-factory/shared/pkg/openapi/order/v1"
-	"github.com/google/uuid"
 )
 
 func (s *APISuite) TestCancelOrderSuccess() {
 	var (
-		uuid              = uuid.New()
+		uuidData          = uuid.New()
 		cancelOrderParams = orderV1.CancelOrderParams{
-			OrderUUID: uuid,
+			OrderUUID: uuidData,
 		}
 	)
 
-	s.orderService.On("CancelOrder", s.ctx, uuid.String()).Return(nil)
+	s.orderService.On("CancelOrder", s.ctx, uuidData.String()).Return(nil)
 
 	res, err := s.api.CancelOrder(s.ctx, cancelOrderParams)
 
@@ -25,19 +27,19 @@ func (s *APISuite) TestCancelOrderSuccess() {
 
 func (s *APISuite) TestCancelOrderNotFound() {
 	var (
-		uuid              = uuid.New()
+		uuidData          = uuid.New()
 		cancelOrderParams = orderV1.CancelOrderParams{
-			OrderUUID: uuid,
+			OrderUUID: uuidData,
 		}
 
 		expectedErr      = model.ErrOrderNotFound
 		expectedResponse = &orderV1.NotFoundError{
 			Code:    404,
-			Message: "Order by this UUID `" + uuid.String() + "` not found",
+			Message: "Order by this UUID `" + uuidData.String() + "` not found",
 		}
 	)
 
-	s.orderService.On("CancelOrder", s.ctx, uuid.String()).Return(expectedErr)
+	s.orderService.On("CancelOrder", s.ctx, uuidData.String()).Return(expectedErr)
 
 	res, err := s.api.CancelOrder(s.ctx, cancelOrderParams)
 
@@ -50,9 +52,9 @@ func (s *APISuite) TestCancelOrderNotFound() {
 
 func (s *APISuite) TestCancelOrderAlreadyPaid() {
 	var (
-		uuid              = uuid.New()
+		uuidData          = uuid.New()
 		cancelOrderParams = orderV1.CancelOrderParams{
-			OrderUUID: uuid,
+			OrderUUID: uuidData,
 		}
 
 		expectedErr      = model.ErrOrderAlreadyPaid
@@ -62,7 +64,7 @@ func (s *APISuite) TestCancelOrderAlreadyPaid() {
 		}
 	)
 
-	s.orderService.On("CancelOrder", s.ctx, uuid.String()).Return(expectedErr)
+	s.orderService.On("CancelOrder", s.ctx, uuidData.String()).Return(expectedErr)
 
 	res, err := s.api.CancelOrder(s.ctx, cancelOrderParams)
 
@@ -75,9 +77,9 @@ func (s *APISuite) TestCancelOrderAlreadyPaid() {
 
 func (s *APISuite) TestCancelOrderAlreadyCancelled() {
 	var (
-		uuid              = uuid.New()
+		uuidData          = uuid.New()
 		cancelOrderParams = orderV1.CancelOrderParams{
-			OrderUUID: uuid,
+			OrderUUID: uuidData,
 		}
 
 		expectedErr      = model.ErrOrderAlreadyCancelled
@@ -87,7 +89,7 @@ func (s *APISuite) TestCancelOrderAlreadyCancelled() {
 		}
 	)
 
-	s.orderService.On("CancelOrder", s.ctx, uuid.String()).Return(expectedErr)
+	s.orderService.On("CancelOrder", s.ctx, uuidData.String()).Return(expectedErr)
 
 	res, err := s.api.CancelOrder(s.ctx, cancelOrderParams)
 
@@ -100,9 +102,9 @@ func (s *APISuite) TestCancelOrderAlreadyCancelled() {
 
 func (s *APISuite) TestCancelOrderInternalError() {
 	var (
-		uuid              = uuid.New()
+		uuidData          = uuid.New()
 		cancelOrderParams = orderV1.CancelOrderParams{
-			OrderUUID: uuid,
+			OrderUUID: uuidData,
 		}
 
 		expectedErr      = errors.New("some internal error")
@@ -112,7 +114,7 @@ func (s *APISuite) TestCancelOrderInternalError() {
 		}
 	)
 
-	s.orderService.On("CancelOrder", s.ctx, uuid.String()).Return(expectedErr)
+	s.orderService.On("CancelOrder", s.ctx, uuidData.String()).Return(expectedErr)
 
 	res, err := s.api.CancelOrder(s.ctx, cancelOrderParams)
 
