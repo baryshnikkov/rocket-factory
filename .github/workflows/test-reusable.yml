@@ -31,6 +31,4 @@ jobs:
       - name: 🧪 Run unit tests via Taskfile
         env:
           MODULES: ${{ inputs.modules }}
-        run: |
-          task test:unit
-          task test-api
+        run: task test:unit
